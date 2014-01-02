@@ -35,6 +35,30 @@ public enum Wand {
 				}
 			}
 		}
+	}),
+	
+	ICE ("Ice", ChatColor.DARK_BLUE, new WandRunnable() {
+		public void run(PlayerInteractEvent e) {
+			for (Entity en : e.getPlayer().getNearbyEntities(10, 10, 10)) {
+				if (en instanceof Player) {
+					((Player) en).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 10 * 7, 1));
+					MessageManager.getInstance().msg((Player) en, MessageType.INFO, ChatColor.DARK_BLUE + "You have been frozen by " + e.getPlayer().getName() + "!");
+					MessageManger.getInstance().msg(e.getPlayer(), MessageType.INFO, ChatColor.DARK_BLUE + "You have frozen " + ((Player) en).getName() + "!");
+				}
+			}
+		}
+	}),
+	
+		WITHER ("Wither", ChatColor.DARK_GRAY, new WandRunnable() {
+		public void run(PlayerInteractEvent e) {
+			for (Entity en : e.getPlayer().getNearbyEntities(10, 10, 10)) {
+				if (en instanceof Player) {
+					((Player) en).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 8 * 4, 1));
+					MessageManager.getInstance().msg((Player) en, MessageType.INFO, ChatColor.DARK_BLUE + "You have been withered by " + e.getPlayer().getName() + "!");
+					MessageManger.getInstance().msg(e.getPlayer(), MessageType.INFO, ChatColor.DARK_BLUE + "You have withered " + ((Player) en).getName() + "!");
+				}
+			}
+		}
 	});
 	
 	private String name;
